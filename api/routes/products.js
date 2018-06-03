@@ -1,14 +1,18 @@
 import express from "express";
-const router = express.Router();
 import mongoose from "mongoose";
 import multer from "multer";
+
+import Product from "../models/product";
+import checkAuth from "../middleware/check-auth";
+
+const router = express.Router();
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "./uploads/");
   },
   filename: (req, file, cb) => {
-    const filename = new Date().toISOString() + file.originalname;
+    const filename = new Date().toDateString() + file.originalname;
     cb(null, filename);
   }
 });
@@ -20,7 +24,6 @@ const fileFilter = (req, file, cb) => {
     // reject a file
     cb(null, false);
   }
-  //
 };
 
 const upload = multer({
@@ -30,8 +33,6 @@ const upload = multer({
   },
   fileFilter: fileFilter
 });
-
-import Product from "../models/product";
 
 router.get("/", (req, res, next) => {
   Product.find()
@@ -63,7 +64,7 @@ router.get("/", (req, res, next) => {
     });
 });
 
-router.post("/", upload.single("productImage"), (req, res, next) => {
+router.post("/", checkAuth, upload.single("productImage"), (req, res, next) => {
   const product = new Product({
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,

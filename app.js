@@ -17,6 +17,7 @@ mongoose.Promise = global.Promise;
 const app = express();
 
 app.use(morgan("dev")); // log every connection... useful
+app.use("/uploads", express.static("uploads"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 

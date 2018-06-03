@@ -11,6 +11,9 @@ import orderRoutes from "./api/routes/orders";
 // note: no need to set useMongoClient: true
 mongoose.connect("mongodb://localhost:27017");
 
+// Remove Deprecation Warning
+mongoose.Promise = global.Promise;
+
 const app = express();
 
 app.use(morgan("dev")); // log every connection... useful

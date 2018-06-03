@@ -1,13 +1,19 @@
 import express from "express";
 import morgan from "morgan";
 import bodyParser from "body-parser";
+import mongoose from "mongoose";
 
 import productRoutes from "./api/routes/products";
 import orderRoutes from "./api/routes/orders";
 
+// Use env to added password
+// ex: ...connect('mongodb://user:' + process.env.MONGO_PW + 'rest')
+// note: no need to set useMongoClient: true
+mongoose.connect("mongodb://localhost:27017");
+
 const app = express();
 
-app.use(morgan("dev"));
+app.use(morgan("dev")); // log every connection... useful
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 

@@ -17,3 +17,7 @@ Run
 ```
 docker start dev-mongo
 ```
+
+## HTTP Response Code
+
+https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status

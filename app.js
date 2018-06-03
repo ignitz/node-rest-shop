@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 
 import productRoutes from "./api/routes/products";
 import orderRoutes from "./api/routes/orders";
+import userRoutes from "./api/routes/user";
 
 // Use env to added password
 // ex: ...connect('mongodb://user:' + process.env.MONGO_PW + 'rest')
@@ -37,6 +38,7 @@ app.use((req, res, next) => {
 // Routers which should handle requests
 app.use("/products", productRoutes);
 app.use("/orders", orderRoutes);
+app.use("/user", userRoutes);
 
 app.use((req, res, next) => {
   const error = new Error("Not found");

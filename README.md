@@ -21,3 +21,7 @@ docker start dev-mongo
 ## HTTP Response Code
 
 https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status
+
+## Useful Links
+
+[JSON Web Token Encoder/Decoder](https://jwt.io/)
